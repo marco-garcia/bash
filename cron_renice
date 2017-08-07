@@ -1,0 +1,6 @@
+# vi /etc/crontab
+(...)
+# change nice (execution priority) of smbd processes
+# to avoid system high CPU
+# run every 15 min
+05,20,35,50 * * * * root for p in $(/bin/ps -C smbd | /bin/cut -d" " -f1); do /usr/bin/renice -n 10 $p; done
