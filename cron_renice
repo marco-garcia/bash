@@ -3,4 +3,5 @@
 # change nice (execution priority) of smbd processes
 # to avoid system high CPU
 # run every 15 min
-05,20,35,50 * * * * root for p in $(/bin/ps -C smbd | /bin/cut -d" " -f1); do /usr/bin/renice -n 10 $p; done
+05,20,35,50 * * * * root for p in $(/bin/ps -C smbd | /bin/cut -c -5); do /usr/bin/renice -n 10 $p; done
+# the cut -c -5 may change if /proc/sys/kernel/pid_max sets a higher max pid other than default 32768
